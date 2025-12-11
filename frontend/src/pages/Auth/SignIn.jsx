@@ -5,7 +5,7 @@ import { Eye, EyeOff } from 'lucide-react';
 import Button from '../../components/UI/Button';
 import Input from '../../components/UI/Input';
 import useAuthStore from '../../store/authStore';
-import axios from 'axios';
+import api from '../../services/api';
 
 const SignIn = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -15,7 +15,7 @@ const SignIn = () => {
 
     const onSubmit = async (data) => {
         try {
-            const response = await axios.post('/api/auth/login', data);
+            const response = await api.post('/auth/login', data);
             login(response.data, response.data.accessToken);
             navigate('/');
         } catch (error) {
